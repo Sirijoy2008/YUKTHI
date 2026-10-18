@@ -24,7 +24,7 @@ const paymentCaseSchema = z.object({
   nextActionDate: z.string().datetime().nullable().optional(),
 });
 
-describe('FINOVA Phase 2: Supabase Database Foundation & Data Integrity Tests', () => {
+describe('YUKTHI Phase 2: Supabase Database Foundation & Data Integrity Tests', () => {
   describe('1. Schema & Validation Constraints', () => {
     it('should validate valid financial activity record', () => {
       const validRecord = {

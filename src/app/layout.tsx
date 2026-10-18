@@ -16,6 +16,10 @@ export const metadata: Metadata = {
   title: 'YUKTHI — Smarter Payments. Safer Money.',
   description:
     'A simple, trustworthy Indian FinTech platform connecting scam checking, payment help, and money planning.',
+  icons: {
+    icon: '/yukthi-icon.png',
+    apple: '/yukthi-icon.png',
+  },
 };
 
 import { LanguageProvider } from '@/context/LanguageContext';

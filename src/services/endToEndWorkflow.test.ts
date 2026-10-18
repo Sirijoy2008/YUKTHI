@@ -158,7 +158,7 @@ describe('Phase 6 End-to-End Workflow Integration Test', () => {
       referenceNumber: 'UTR-DELAYED-9988'
     });
 
-    // 2. FINOVA creates the associated financial activity with status UNCONFIRMED
+    // 2. YUKTHI creates the associated financial activity with status UNCONFIRMED
     expect(paymentCaseCreation.case.issueType).toBe('DELAYED');
     expect(paymentCaseCreation.case.resolutionStatus).toBe('OPEN');
     expect(paymentCaseCreation.case.financialActivity.status).toBe(ActivityStatus.UNCONFIRMED);

@@ -100,7 +100,7 @@ describe('Payment Assistant Frontend Integration', () => {
               },
             },
           ],
-          disclaimer: 'FINOVA is not a bank.',
+          disclaimer: 'YUKTHI is not a bank.',
         },
       };
 

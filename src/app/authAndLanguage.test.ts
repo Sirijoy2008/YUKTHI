@@ -13,7 +13,7 @@ import { POST as loginHandler } from '@/app/api/auth/login/route';
 import { POST as signupHandler } from '@/app/api/auth/signup/route';
 import { GET as statusHandler } from '@/app/api/auth/status/route';
 
-describe('FINOVA Opening Experience, Authentication, Language & Identity Verification', () => {
+describe('YUKTHI Opening Experience, Authentication, Language & Identity Verification', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
     setSessionUserId('user-123');
@@ -81,7 +81,7 @@ describe('FINOVA Opening Experience, Authentication, Language & Identity Verific
       const validReq = new NextRequest('http://localhost/api/auth/login', {
         method: 'POST',
         body: JSON.stringify({
-          identifier: 'user@finova.in',
+          identifier: 'user@yukthi.in',
           password: 'SecurePassword123!',
         }),
       });
@@ -91,7 +91,7 @@ describe('FINOVA Opening Experience, Authentication, Language & Identity Verific
 
       expect(res.status).toBe(200);
       expect(json.success).toBe(true);
-      expect(json.data.user.email).toBe('user@finova.in');
+      expect(json.data.user.email).toBe('user@yukthi.in');
       expect(json.data.user.verificationStatus).toBe('NOT_STARTED');
     });
 
@@ -227,6 +227,8 @@ describe('FINOVA Opening Experience, Authentication, Language & Identity Verific
     it('confirms that sensitive credential storage is forbidden', () => {
       // Passwords, raw Aadhaar numbers, or OTPs must never exist in local storage keys
       const mockStorage = {
+        yukthi_user_id: 'user-123',
+        yukthi_language: 'en',
         finova_user_id: 'user-123',
         finova_language: 'en',
       };

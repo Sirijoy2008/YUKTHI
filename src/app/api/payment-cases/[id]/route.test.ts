@@ -71,7 +71,7 @@ describe('Single Payment Case API Route (/api/payment-cases/[id])', () => {
         case: { id: 'case-123', resolutionStatus: 'OPEN' },
         verification: { verifiedStatus: 'UNVERIFIED', isIndependentlyVerified: false },
         guidance: { title: 'Payment Pending' },
-        disclaimer: 'FINOVA disclaimer...'
+        disclaimer: 'YUKTHI disclaimer...'
       };
 
       vi.mocked(paymentAssistantService.getPaymentCaseById).mockResolvedValueOnce(mockCase as any);
@@ -194,7 +194,7 @@ describe('Single Payment Case API Route (/api/payment-cases/[id])', () => {
         case: { id: 'case-123', resolutionStatus: 'RESOLVED' },
         verification: { isIndependentlyVerified: false },
         guidance: { title: 'Payment Failed' },
-        disclaimer: 'FINOVA disclaimer'
+        disclaimer: 'YUKTHI disclaimer'
       };
 
       vi.mocked(paymentAssistantService.updatePaymentCase).mockResolvedValueOnce(mockUpdated as any);

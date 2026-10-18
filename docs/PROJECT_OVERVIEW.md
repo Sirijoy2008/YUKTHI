@@ -1,4 +1,4 @@
-# Project Overview: FINOVA
+# Project Overview: YUKTHI
 
 ## Problem Statement
 Indian consumers frequently encounter suspicious payment requests, experience failed or delayed UPI transactions, and struggle to forecast their short-term cash flow when funds are locked in uncertain states.
@@ -17,14 +17,14 @@ With the rapid adoption of digital payments in India, the volume of social engin
 - Difficulty managing upcoming expenses when expected income is delayed.
 
 ## Proposed Solution
-FINOVA provides a unified action centre combining a Scam Checker, Payment Assistant, and Cash-Flow Planner to guide users through financial uncertainties.
+YUKTHI provides a unified action centre combining a Scam Checker, Payment Assistant, and Cash-Flow Planner to guide users through financial uncertainties.
 
 ## Core Value Proposition
 A single platform to assess risk, follow up on payments, and plan cash flow based on the real-world status of those payments.
 
 ## Proposed Differentiator
-**FINOVA connects financial risk awareness, payment follow-up, and cash-flow planning through a shared financial activity record and a unified action centre.** 
-Instead of isolated tools for fraud checking or budgeting, FINOVA links a delayed payment directly to the user's cash-flow forecast and tracks follow-up actions centrally. *(Note: This differentiator requires further market validation through competitor research).*
+**YUKTHI connects financial risk awareness, payment follow-up, and cash-flow planning through a shared financial activity record and a unified action centre.** 
+Instead of isolated tools for fraud checking or budgeting, YUKTHI links a delayed payment directly to the user's cash-flow forecast and tracks follow-up actions centrally. *(Note: This differentiator requires further market validation through competitor research).*
 
 ## Scope
 - **In-Scope:** Rule-based text analysis for risk, static guidance for payment follow-ups, manual entry cash-flow planning, hypothetical scenarios.

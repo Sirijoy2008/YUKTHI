@@ -1,4 +1,4 @@
-# Contributing to FINOVA
+# Contributing to YUKTHI
 
 ## Branching Strategy
 - **`main`**: Production-ready code.

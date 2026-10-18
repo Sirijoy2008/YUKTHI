@@ -1,5 +1,5 @@
 /**
- * FINOVA API Types & Data Contracts
+ * YUKTHI API Types & Data Contracts
  * Consistent with backend route handlers and services.
  */
 

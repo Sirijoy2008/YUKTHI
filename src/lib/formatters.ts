@@ -1,5 +1,5 @@
 /**
- * Formatters and UI Utilities for FINOVA
+ * Formatters and UI Utilities for YUKTHI
  * Handles Indian Rupee (INR) currency formatting from paise (integer minor units),
  * dates, and status color tokens.
  */

@@ -27,7 +27,7 @@ Create a `.env` file in the root directory (use `.env.example` as a template).
 *Required Variables:*
 ```env
 PORT=3000
-DATABASE_URL="postgresql://user:password@localhost:5432/finova_db?schema=public"
+DATABASE_URL="postgresql://user:password@localhost:5432/yukthi_db?schema=public"
 ```
 
 ## Database Setup (Supabase PostgreSQL + Prisma ORM)

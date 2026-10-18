@@ -267,7 +267,7 @@
         "recommendedActions": ["string"],
         "supportChannels": ["string"]
       },
-      "disclaimer": "FINOVA is an independent guidance and tracking assistant. FINOVA does not have direct access to banking systems, does not verify transactions with your bank, and cannot reverse, settle, or refund transactions. Statuses shown are user-reported and not independently verified. Processing times and resolution procedures vary by payment provider and method. Never share OTPs, UPI PINs, or passwords with anyone, including support staff."
+      "disclaimer": "YUKTHI is an independent guidance and tracking assistant. YUKTHI does not have direct access to banking systems, does not verify transactions with your bank, and cannot reverse, settle, or refund transactions. Statuses shown are user-reported and not independently verified. Processing times and resolution procedures vary by payment provider and method. Never share OTPs, UPI PINs, or passwords with anyone, including support staff."
     }
   }
   ```
@@ -310,7 +310,7 @@
           "isIndependentlyVerified": false
         }
       ],
-      "disclaimer": "All listed cases reflect user-reported statuses. FINOVA does not verify bank transaction states or execute reversals."
+      "disclaimer": "All listed cases reflect user-reported statuses. YUKTHI does not verify bank transaction states or execute reversals."
     }
   }
   ```

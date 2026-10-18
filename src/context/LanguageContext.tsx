@@ -40,8 +40,10 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       }
     };
 
+    window.addEventListener('yukthi-language-changed', handleLanguageChange);
     window.addEventListener('finova-language-changed', handleLanguageChange);
     return () => {
+      window.removeEventListener('yukthi-language-changed', handleLanguageChange);
       window.removeEventListener('finova-language-changed', handleLanguageChange);
     };
   }, []);

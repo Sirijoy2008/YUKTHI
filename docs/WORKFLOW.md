@@ -37,7 +37,7 @@
   - Action Centre dynamically aggregates the unresolved payment as a `PAYMENT_FOLLOW_UP` action item and flags the `CASH_FLOW_SHORTFALL`.
   - Prioritizes items by urgency (`HIGH` for shortfalls and critical payment issues).
 - **Lifecycle Resolution:**
-  - When the user confirms receipt (via Action Centre resolution or activity status update), FINOVA executes an atomic database transaction:
+  - When the user confirms receipt (via Action Centre resolution or activity status update), YUKTHI executes an atomic database transaction:
     - `FinancialActivity.status` -> `CONFIRMED`
     - `PaymentCase.resolutionStatus` -> `RESOLVED`
   - Cash-Flow Planner immediately updates the primary forecast, including the confirmed funds and eliminating the uncertainty gap.

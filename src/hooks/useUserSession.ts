@@ -24,8 +24,10 @@ export function useUserSession() {
       setUserNameState(getSessionUserName());
     };
 
+    window.addEventListener('yukthi-user-changed', handleUserChange);
     window.addEventListener('finova-user-changed', handleUserChange);
     return () => {
+      window.removeEventListener('yukthi-user-changed', handleUserChange);
       window.removeEventListener('finova-user-changed', handleUserChange);
     };
   }, []);

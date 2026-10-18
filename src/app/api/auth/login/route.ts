@@ -87,7 +87,12 @@ export async function POST(req: NextRequest) {
 
     // Derive a clean, human display name from user profile or the input credentials
     let derivedDisplayName = user?.displayName;
-    if (!derivedDisplayName || derivedDisplayName === 'FINOVA User' || derivedDisplayName === 'User') {
+    if (
+      !derivedDisplayName ||
+      derivedDisplayName === 'YUKTHI User' ||
+      derivedDisplayName === 'FINOVA User' ||
+      derivedDisplayName === 'User'
+    ) {
       if (identifier.includes('@')) {
         const prefix = identifier.split('@')[0];
         const cleanName = prefix.replace(/[._-]/g, ' ').trim();
@@ -105,7 +110,7 @@ export async function POST(req: NextRequest) {
     // Provision or match user identity
     const resolvedUserId = user ? user.id : 'user-123';
     const resolvedEmail =
-      user?.email || (identifier.includes('@') ? identifier.toLowerCase() : 'user@finova.in');
+      user?.email || (identifier.includes('@') ? identifier.toLowerCase() : 'user@yukthi.in');
     const resolvedDisplayName = derivedDisplayName || 'Sirijoy';
     const preferredLanguage = user?.preferredLanguage || 'en';
 

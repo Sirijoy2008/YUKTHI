@@ -1,5 +1,5 @@
 /**
- * Central FINOVA API Client
+ * Central YUKTHI API Client
  * Wraps all backend Route Handlers with type safety, authentication headers,
  * and unified error handling.
  */
@@ -21,20 +21,35 @@ import {
 
 const DEFAULT_USER_ID = 'user-123';
 const DEFAULT_USER_NAME = 'Sirijoy';
-const STORAGE_KEY = 'finova_user_id';
-const STORAGE_NAME_KEY = 'finova_user_name';
-const STORAGE_EMAIL_KEY = 'finova_user_email';
+const STORAGE_KEY = 'yukthi_user_id';
+const LEGACY_STORAGE_KEY = 'finova_user_id';
+const STORAGE_NAME_KEY = 'yukthi_user_name';
+const LEGACY_STORAGE_NAME_KEY = 'finova_user_name';
+const STORAGE_EMAIL_KEY = 'yukthi_user_email';
+const LEGACY_STORAGE_EMAIL_KEY = 'finova_user_email';
 
 let memoryUserId = DEFAULT_USER_ID;
 let memoryUserName = DEFAULT_USER_NAME;
 let memoryUserEmail = 'sirijoy@yukthi.in';
+
+function notifyUserChanged(): void {
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new Event('yukthi-user-changed'));
+    window.dispatchEvent(new Event('finova-user-changed'));
+  }
+}
 
 /**
  * Retrieves the current session user ID
  */
 export function getSessionUserId(): string {
   if (typeof window !== 'undefined') {
-    return localStorage.getItem(STORAGE_KEY) || memoryUserId || DEFAULT_USER_ID;
+    return (
+      localStorage.getItem(STORAGE_KEY) ||
+      localStorage.getItem(LEGACY_STORAGE_KEY) ||
+      memoryUserId ||
+      DEFAULT_USER_ID
+    );
   }
   return memoryUserId;
 }
@@ -44,7 +59,12 @@ export function getSessionUserId(): string {
  */
 export function getSessionUserName(): string {
   if (typeof window !== 'undefined') {
-    return localStorage.getItem(STORAGE_NAME_KEY) || memoryUserName || DEFAULT_USER_NAME;
+    return (
+      localStorage.getItem(STORAGE_NAME_KEY) ||
+      localStorage.getItem(LEGACY_STORAGE_NAME_KEY) ||
+      memoryUserName ||
+      DEFAULT_USER_NAME
+    );
   }
   return memoryUserName;
 }
@@ -57,7 +77,8 @@ export function setSessionUserId(userId: string): void {
   memoryUserId = cleanId;
   if (typeof window !== 'undefined') {
     localStorage.setItem(STORAGE_KEY, cleanId);
-    window.dispatchEvent(new Event('finova-user-changed'));
+    localStorage.setItem(LEGACY_STORAGE_KEY, cleanId);
+    notifyUserChanged();
   }
 }
 
@@ -69,7 +90,8 @@ export function setSessionUserName(userName: string): void {
   memoryUserName = cleanName;
   if (typeof window !== 'undefined') {
     localStorage.setItem(STORAGE_NAME_KEY, cleanName);
-    window.dispatchEvent(new Event('finova-user-changed'));
+    localStorage.setItem(LEGACY_STORAGE_NAME_KEY, cleanName);
+    notifyUserChanged();
   }
 }
 
@@ -84,9 +106,16 @@ export function setSessionUser(userData: { id: string; name?: string; email?: st
 
   if (typeof window !== 'undefined') {
     localStorage.setItem(STORAGE_KEY, cleanId);
-    if (userData.name) localStorage.setItem(STORAGE_NAME_KEY, userData.name.trim());
-    if (userData.email) localStorage.setItem(STORAGE_EMAIL_KEY, userData.email.trim());
-    window.dispatchEvent(new Event('finova-user-changed'));
+    localStorage.setItem(LEGACY_STORAGE_KEY, cleanId);
+    if (userData.name) {
+      localStorage.setItem(STORAGE_NAME_KEY, userData.name.trim());
+      localStorage.setItem(LEGACY_STORAGE_NAME_KEY, userData.name.trim());
+    }
+    if (userData.email) {
+      localStorage.setItem(STORAGE_EMAIL_KEY, userData.email.trim());
+      localStorage.setItem(LEGACY_STORAGE_EMAIL_KEY, userData.email.trim());
+    }
+    notifyUserChanged();
   }
 }
 

@@ -21,7 +21,7 @@ describe('Phase 7: Full Application Journey & Security Integration', () => {
       expect(initialUser).toBeDefined();
 
       // Switch user
-      const testUserId = 'user-finova-qa-999';
+      const testUserId = 'user-yukthi-qa-999';
       setSessionUserId(testUserId);
       expect(getSessionUserId()).toBe(testUserId);
 

@@ -149,7 +149,7 @@ describe('Payment Cases API Route (/api/payment-cases)', () => {
           recommendedActions: ['Obtain UTR'],
           supportChannels: ['UPI App Support']
         },
-        disclaimer: 'FINOVA is an independent guidance and tracking assistant...'
+        disclaimer: 'YUKTHI is an independent guidance and tracking assistant...'
       };
 
       vi.mocked(paymentAssistantService.createPaymentCase).mockResolvedValueOnce(mockCreated as any);

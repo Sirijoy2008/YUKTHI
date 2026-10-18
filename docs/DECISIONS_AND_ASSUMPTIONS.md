@@ -43,5 +43,5 @@
 - **Status:** Unresolved. Needs validation via user testing.
 
 ### ASM-002: Market Differentiator
-- **Assumption:** Linking payment disputes to cash flow is a significant enough pain point that users will prefer FINOVA over using separate banking and budgeting apps.
+- **Assumption:** Linking payment disputes to cash flow is a significant enough pain point that users will prefer YUKTHI over using separate banking and budgeting apps.
 - **Status:** Unresolved. Needs market validation.

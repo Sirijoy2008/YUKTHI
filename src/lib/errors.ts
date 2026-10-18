@@ -1,6 +1,6 @@
 /**
  * Standard Error Codes and Application Error Hierarchy
- * for YUKTHI / FINOVA.
+ * for YUKTHI.
  */
 
 export type AppErrorCode =

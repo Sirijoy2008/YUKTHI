@@ -51,5 +51,5 @@ graph TD
 Enforces user isolation across all endpoints via `x-user-id` session header with strict 401 Unauthorized and 403 Forbidden checks.
 
 ### Regulatory Disclaimers
-FINOVA does not claim direct banking integrations or automated reversal capabilities. Statuses are user-reported and projections are non-guaranteed estimates.
+YUKTHI does not claim direct banking integrations or automated reversal capabilities. Statuses are user-reported and projections are non-guaranteed estimates.
 

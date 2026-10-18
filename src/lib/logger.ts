@@ -1,5 +1,5 @@
 /**
- * Safe structured server-side logger for YUKTHI / FINOVA.
+ * Safe structured server-side logger for YUKTHI.
  * Automatically redacts sensitive fields (passwords, PINs, OTPs, tokens, CVVs, database credentials)
  * and formats logs with ISO timestamps, correlation IDs, and error codes.
  */

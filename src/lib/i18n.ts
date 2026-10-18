@@ -1,5 +1,5 @@
 /**
- * FINOVA Internationalization (i18n) Engine
+ * YUKTHI Internationalization (i18n) Engine
  * Supported Languages:
  *   - English (en) [Default]
  *   - Telugu (te) [తెలుగు]
@@ -20,13 +20,15 @@ export const SUPPORTED_LANGUAGES: LanguageOption[] = [
   { code: 'hi', label: 'Hindi', nativeName: 'हिन्दी' },
 ];
 
-export const STORAGE_LANG_KEY = 'finova_language';
+export const STORAGE_LANG_KEY = 'yukthi_language';
+export const LEGACY_STORAGE_LANG_KEY = 'finova_language';
 export const DEFAULT_LANGUAGE: SupportedLanguage = 'en';
 let memoryLanguage: SupportedLanguage = DEFAULT_LANGUAGE;
 
 export function getStoredLanguage(): SupportedLanguage {
   if (typeof window !== 'undefined') {
-    const saved = localStorage.getItem(STORAGE_LANG_KEY) as SupportedLanguage;
+    const saved = (localStorage.getItem(STORAGE_LANG_KEY) ||
+      localStorage.getItem(LEGACY_STORAGE_LANG_KEY)) as SupportedLanguage;
     if (saved && (saved === 'en' || saved === 'te' || saved === 'hi')) {
       return saved;
     }
@@ -38,6 +40,8 @@ export function setStoredLanguage(lang: SupportedLanguage): void {
   memoryLanguage = lang;
   if (typeof window !== 'undefined') {
     localStorage.setItem(STORAGE_LANG_KEY, lang);
+    localStorage.setItem(LEGACY_STORAGE_LANG_KEY, lang);
+    window.dispatchEvent(new CustomEvent('yukthi-language-changed', { detail: lang }));
     window.dispatchEvent(new CustomEvent('finova-language-changed', { detail: lang }));
   }
 }

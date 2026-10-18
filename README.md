@@ -1,11 +1,11 @@
-# FINOVA — Smart Financial Assistance Platform
+# YUKTHI — Smart Financial Assistance Platform
 
 **Team:** YUGMA  
 **Domain:** FinTech  
 **Target Market:** India  
 
 ## Overview
-FINOVA is a Smart Financial Assistance Platform designed to help users understand potential financial risks, handle payment-related uncertainty, and plan cash flow through one connected platform. 
+YUKTHI is a Smart Financial Assistance Platform designed to help users understand potential financial risks, handle payment-related uncertainty, and plan cash flow through one connected platform. 
 
 ## Problem Addressed
 Users often face a fragmented experience when dealing with financial uncertainties. They struggle to assess the risks of suspicious messages, don't know the next steps for failed or pending payments, and find it difficult to forecast their cash flow when expected payments are delayed. 

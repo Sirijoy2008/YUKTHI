@@ -114,7 +114,7 @@ function initializeSeedData(): InMemoryDatabase {
     users: [
       {
         id: defaultUserId,
-        email: 'ananya.sharma@finova.in',
+        email: 'ananya.sharma@yukthi.in',
         displayName: 'Ananya Sharma',
         preferredLanguage: 'en',
         createdAt: twoDaysAgo,
@@ -239,14 +239,17 @@ function initializeSeedData(): InMemoryDatabase {
 }
 
 declare global {
+  var __yukthi_memory_db: InMemoryDatabase | undefined;
   var __finova_memory_db: InMemoryDatabase | undefined;
 }
 
 export function getInMemoryDb(): InMemoryDatabase {
-  if (!globalThis.__finova_memory_db) {
-    globalThis.__finova_memory_db = initializeSeedData();
+  if (!globalThis.__yukthi_memory_db && !globalThis.__finova_memory_db) {
+    const initialized = initializeSeedData();
+    globalThis.__yukthi_memory_db = initialized;
+    globalThis.__finova_memory_db = initialized;
   }
-  return globalThis.__finova_memory_db;
+  return globalThis.__yukthi_memory_db || globalThis.__finova_memory_db!;
 }
 
 // ---------------------------------------------------------------------------

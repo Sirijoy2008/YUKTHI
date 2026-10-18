@@ -1,6 +1,6 @@
 # Security and Privacy
 
-> **Note:** FINOVA is currently an empty project in the documentation phase. These guidelines apply to the proposed implementation.
+> **Note:** YUKTHI is an educational and organizational assistance platform. These guidelines apply to the platform implementation.
 
 ## Data Minimization
 - The application shall only request data strictly necessary for providing the stated features.

@@ -31,8 +31,8 @@ export async function GET(req: NextRequest) {
     return successResponse(
       {
         userId,
-        email: user?.email || 'user@finova.in',
-        displayName: user?.displayName || 'FINOVA User',
+        email: user?.email || 'user@yukthi.in',
+        displayName: user?.displayName || 'YUKTHI User',
         preferredLanguage: user?.preferredLanguage || 'en',
         verification: {
           status: 'NOT_STARTED', // Explicit: Never falsely reports 'VERIFIED'
