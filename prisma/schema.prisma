@@ -1,0 +1,132 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                  String              @id @default(uuid())
+  email               String?             @unique
+  displayName         String?             @map("display_name")
+  preferredLanguage   String              @default("en") @map("preferred_language")
+  createdAt           DateTime            @default(now()) @map("created_at")
+  updatedAt           DateTime            @updatedAt @map("updated_at")
+  financialActivities FinancialActivity[]
+  cashFlowItems       CashFlowItem[]
+
+  @@map("user_profiles")
+}
+
+enum ActivityType {
+  INCOME
+  EXPENSE
+}
+
+enum ActivityStatus {
+  CONFIRMED
+  UNCONFIRMED
+  FAILED
+}
+
+model FinancialActivity {
+  id                            String          @id @default(uuid())
+  userId                        String          @map("user_id")
+  user                          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type                          ActivityType
+  // amount in minor units (e.g., paise for INR) to prevent floating-point errors
+  amount                        Int            
+  currency                      String          @default("INR")
+  status                        ActivityStatus
+  date                          DateTime
+  referenceNumber               String?         @map("reference_number")
+  title                         String?         @default("Financial Activity")
+  description                   String?
+  sourceModule                  String?         @default("FINANCIAL_ACTIVITY") @map("source_module")
+  confidenceOrVerificationState String?         @default("USER_REPORTED") @map("confidence_or_verification_state")
+  createdAt                     DateTime        @default(now()) @map("created_at")
+  updatedAt                     DateTime        @updatedAt @map("updated_at")
+  
+  paymentCase                   PaymentCase?
+  riskAssessment                RiskAssessment?
+
+  @@index([userId, date])
+  @@index([userId, status])
+  @@map("financial_activities")
+}
+
+model PaymentCase {
+  id                  String            @id @default(uuid())
+  userId              String?           @map("user_id")
+  financialActivityId String            @unique @map("financial_activity_id")
+  financialActivity   FinancialActivity @relation(fields: [financialActivityId], references: [id], onDelete: Cascade)
+  paymentMethod       String?           @default("UPI") @map("payment_method")
+  issueType           String            @map("issue_type") // e.g., "DEBITED_NOT_CREDITED"
+  reportedStatus      String?           @map("reported_status")
+  verificationStatus  String?           @default("UNVERIFIED") @map("verification_status")
+  amount              Int?
+  currency            String?           @default("INR")
+  referenceNumber     String?           @map("reference_number")
+  issueDescription    String?           @map("issue_description")
+  resolutionStatus    String            @default("OPEN") @map("resolution_status") // "OPEN", "RESOLVED"
+  nextActionDate      DateTime?         @map("next_action_date")
+  createdAt           DateTime          @default(now()) @map("created_at")
+  updatedAt           DateTime          @updatedAt @map("updated_at")
+
+  @@map("payment_cases")
+}
+
+model RiskAssessment {
+  id                   String             @id @default(uuid())
+  userId               String?            @map("user_id")
+  financialActivityId  String?            @unique @map("financial_activity_id")
+  financialActivity    FinancialActivity? @relation(fields: [financialActivityId], references: [id], onDelete: SetNull)
+  // messageContent is intentionally NOT stored for data minimization
+  indicatorsFound      String[]           @map("indicators_found")
+  riskLevel            String             @map("risk_level") // "LOW", "MEDIUM", "HIGH"
+  assessmentMethod     String?            @default("RULE_ENGINE_V1") @map("assessment_method")
+  limitationsDisclosed Boolean?           @default(true) @map("limitations_disclosed")
+  createdAt            DateTime           @default(now()) @map("created_at")
+
+  @@map("risk_assessments")
+}
+
+model CashFlowItem {
+  id                  String    @id @default(uuid())
+  userId              String    @map("user_id")
+  user                User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  financialActivityId String?   @map("financial_activity_id")
+  // amount in minor units (paise)
+  amount              Int      
+  currency            String    @default("INR")
+  isIncome            Boolean   @map("is_income")
+  isConfirmed         Boolean   @default(false) @map("is_confirmed")
+  availabilityStatus  String?   @default("PENDING") @map("availability_status")
+  dueDate             DateTime? @map("due_date")
+  description         String?
+  scenarioId          String?   @map("scenario_id")
+  createdAt           DateTime  @default(now()) @map("created_at")
+  updatedAt           DateTime  @updatedAt @map("updated_at")
+
+  @@index([userId, dueDate])
+  @@index([userId, isConfirmed])
+  @@map("cash_flow_items")
+}
+
+model ActionCentreItem {
+  id                  String    @id @default(uuid())
+  userId              String    @map("user_id")
+  financialActivityId String?   @map("financial_activity_id")
+  paymentCaseId       String?   @map("payment_case_id")
+  title               String
+  description         String?
+  urgency             String    @default("MEDIUM")
+  status              String    @default("PENDING")
+  dueAt               DateTime? @map("due_at")
+  createdAt           DateTime  @default(now()) @map("created_at")
+  updatedAt           DateTime  @updatedAt @map("updated_at")
+
+  @@map("action_centre_items")
+}
